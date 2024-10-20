@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <!-- Use correct character set. -->
+  <meta charset='utf-8'>
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>Test!!!</title>
+  <script type="text/javascript" src="../Apps/Sandcastle/Sandcastle-header.js"></script>
+  <script type="text/javascript" src="../ThirdParty/requirejs-2.1.20/require.js"></script>
+  <script type="text/javascript">
+    require.config({ baseUrl : '../Source', waitSeconds : 60});
+  </script>
+  <script type="text/javascript" src="../Build/Cesium/Cesium.js"></script>
+  <script type="text/javascript" src="js-librarys/jquery.min.js"></script>
+  <script type="text/javascript" src="cesium_scripts.js"></script>
+  <script type="text/javascript" src="my_scripts.js"></script>
+  <style>
+      @import url(../Apps/Sandcastle/templates/bucket.css);
+      @import url(../Build/Cesium/Widgets/widgets.css);
+      html, body, #cesiumContainer {width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;}
+  </style>
+</head>
+<body class="sandcastle-loading" data-sandcastle-bucket="bucket-requirejs.html">
+  <style>
+    @import url(../Apps/Sandcastle/templates/bucket.css);
+  </style>
+  <div id="cesiumContainer" class="fullSize"></div>
+  <div id="loadingOverlay"><h1>Loading...</h1></div>
+  <script id="cesium_sandcastle_script" charset="utf-8">
+
+    var viewer = new Cesium.Viewer('cesiumContainer', {
+      imageryProvider : new Cesium.createTileMapServiceImageryProvider({
+        url : '../Source/Assets/Textures/NaturalEarthII' }),
+      baseLayerPicker : true,
+      fullscreenButton : true,
+      geocoder : false,
+      homeButton : true,
+      infoBox : true,
+      timeline : true,
+      sceneModePicker : true, // кнопка выбора вида карты (3D, развернутая)
+      navigationHelpButton : false,
+      sceneMode : Cesium.SceneMode.SCENE3D
+    });
+
+    viewer.animation.viewModel.timeFormatter  = TDMT;
+    viewer.animation.viewModel.dateFormatter  = TDMD;
+    //viewer.timeline.makeLabel  = TDMDT;
+
+    var scene = viewer.scene;
+    var fShowCursorPos = false
+
+    //viewer.dataSources.add(Cesium.CzmlDataSource.load('C:/testczml.czml'));
+
+    var imageryLayers = viewer.imageryLayers;
+
+    function startup(Cesium)
+    { "use strict";
+
+/*var col = Cesium.Color();
+      var GridIP = new Cesium.GridImageryProvider(
+    {
+      cells : 2,
+      color : Cesium.Color.BLACK,
+      glowWidth : 0
+    });
+
+      GridIP.readonlyhasAlphaChannel  = false;
+
+    var layer = imageryLayers.addImageryProvider(GridIP);*/
+
+    Sandcastle.finishedLoading();
+
+    }
+
+    if (typeof Cesium !== "undefined") { startup(Cesium);}
+    else if (typeof require === "function") {require(["Cesium"], startup);}
+  </script>
+<script type="text/javascript" src="blastH.js"></script>
+<script type="text/javascript" src="blastB.js"></script>
+<script tipe="text/javascript" src="LethalH.js"></script>
+<script tipe="text/javascript" src="obj1.js"></script>
+<script tipe="text/javascript" src="obj2.js"></script>
+<script tipe="text/javascript" src="obj3.js"></script>
+<script tipe="text/javascript" src="obj4.js"></script>
+<script tipe="text/javascript" src="bb.js"></script>
+  </body>
+</html>
